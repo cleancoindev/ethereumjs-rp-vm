@@ -31,7 +31,8 @@ function setup (vm = null) {
     data: testData,
     p: {
       runBlock: promisify(runBlock.bind(vm)),
-      putAccount: promisify(vm.stateManager.putAccount.bind(vm.stateManager))
+      putAccount: promisify(vm.stateManager.putAccount.bind(vm.stateManager)),
+      generateCanonicalGenesis: promisify(vm.stateManager.generateCanonicalGenesis.bind(vm.stateManager))
     }
   }
 }
@@ -59,6 +60,8 @@ tape('runBlock', async (t) => {
     const genesis = createGenesis()
     const block = new Block(util.rlp.decode(suite.data.blocks[0].rlp))
 
+    await suite.p.generateCanonicalGenesis()
+
     // The mocked VM uses a mocked runTx
     // which always returns an error.
     await suite.p.runBlock({ block, root: genesis.header.stateRoot })
@@ -75,7 +78,10 @@ tape('should fail when tx gas limit higher than block gas limit', async (t) => {
   const genesis = createGenesis()
   const block = new Block(util.rlp.decode(suite.data.blocks[0].rlp))
   block.transactions[0].gasLimit = Buffer.from('3fefba', 'hex')
-  suite.p.runBlock({ block, root: genesis.header.stateRoot })
+
+  await suite.p.generateCanonicalGenesis()
+
+  await suite.p.runBlock({ block, root: genesis.header.stateRoot })
     .then(() => t.fail('should have returned error'))
     .catch((e) => t.ok(e.message.includes('higher gas limit')))
 
@@ -92,6 +98,8 @@ tape('should fail when runCall fails', async (t) => {
     const acc = createAccount()
     await suite.p.putAccount(tx.from.toString('hex'), acc)
   }
+
+  await suite.p.generateCanonicalGenesis()
 
   // The mocked VM uses a mocked runCall
   // which always returns an error.
