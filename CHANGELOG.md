@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 (modification: no type change headlines) and this project adheres to 
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.4.1] - Unreleaed
+
+* Add support for debug logs and dump logs to file.
+
 ## [2.4.0] - 2018-07-27
 
 With the ``2.4.x`` release series we now start to gradually add ``Constantinople`` features with the
