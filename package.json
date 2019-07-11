@@ -1,6 +1,6 @@
 {
-  "name": "ethereumjs-vm",
-  "version": "2.4.4-coverage",
+  "name": "rp-ethereumjs-vm",
+  "version": "2.4.0",
   "description": "An Ethereum VM implementation",
   "main": "dist/index.js",
   "files": [
