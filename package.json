@@ -65,13 +65,14 @@
   },
   "author": "mjbecze <mjbecze@gmail.com>",
   "contributors": [
-    "Alex Beregszaszi <alex@rtfs.hu>"
+    "Alex Beregszaszi <alex@rtfs.hu>",
+    "Agustin Aguilar <agusxrun@gmail.com>"
   ],
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ethereumjs/ethereumjs-vm/issues"
+    "url": "https://github.com/ripio/ethereumjs-rp-vm/issues"
   },
-  "homepage": "https://github.com/ethereumjs/ethereumjs-vm",
+  "homepage": "https://github.com/ripio/ethereumjs-rp-vm/",
   "nyc": {
     "exclude": [
       "tests"
